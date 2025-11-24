@@ -1,8 +1,12 @@
 #include <iostream>
 #include "Euphoria/Core/Application.hpp"
+#include "Euphoria/Layers/Stack.hpp"
+#include "Core/EditorLayer.hpp"
 
 using namespace Euphoria;
 using namespace Core;
+using namespace LayerStack;
+using namespace Systems;
 
 #define WINDOW_NAME "Euphoria Editor"
 #define WINDOW_WIDTH 512
@@ -17,9 +21,10 @@ int main() {
 	creationData.RendererCreationData.BackgroundData = Euphoria::Global::ClearColourData(25, 52, 62, 255);
 	creationData.PathData.ResourcesDirectory = "C:\\Personal\\Coding\\Engines\\Euphoria\\Euphoria\\Resources";
 
-	std::shared_ptr<Application> application = Application::InitializeApplication(creationData);
 	try {
-		application->Start();
+		std::shared_ptr<Application> application = Application::InitializeApplication(creationData);
+		System::Get<Stack>()->PushAndCreateLayer<EuphoriaEditor::Core::EditorLayer>(); // initialize and create the editor layer
+		application->Start(); // begins the update loop
 		return EXIT_SUCCESS;
 	}
 	catch (std::exception& exception) {

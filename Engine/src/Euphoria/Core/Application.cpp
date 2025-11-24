@@ -33,7 +33,7 @@ void Application::Start() {
             Rendering::Gui::ProcessEvent(*Renderer->GetWindow(), ev);
             if (event->is<sf::Event::Closed>()) {
                 if (Renderer) Renderer->GetWindow()->close();
-                LayerStack->PollEvent(Global::StackEvent::Quit);
+                //LayerStack->PollEvent(Global::StackEvent::Quit);
                 break;
             }
         }
@@ -52,7 +52,10 @@ void Application::Start() {
                 }
             }
 
+            // poll the gui render event and render the gui content
+            LayerStack->PollEvent(Global::StackEvent::GuiRender);
             Gui::RenderContent();
+
             Gui::EndRender(*Renderer->GetWindow());
             Renderer->PresentFrame();
         }

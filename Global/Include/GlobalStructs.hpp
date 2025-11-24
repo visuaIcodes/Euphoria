@@ -117,7 +117,7 @@ namespace Euphoria::Global {
 #define EUPHORIA_ASSERT(cond, fmt, ...)
 #endif
 
-    enum StackEvent { Update = 0, Render = 1, Quit = 2 };
+    enum StackEvent { Update = 0, Render = 1, GuiRender = 2 };
     enum RenderingBackend { SFML };
     enum SpriteType { Circle, Rectangle };
 

@@ -153,12 +153,16 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\EntryPoint.cpp" />
+    <ClCompile Include="src\Editor\Core\EditorLayer.cpp" />
+    <ClCompile Include="src\Editor\EntryPoint.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\EuphoriaEngine.vcxproj">
       <Project>{9ffb41b2-65c3-4e74-9845-21c248da1d8d}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Editor\Core\EditorLayer.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
