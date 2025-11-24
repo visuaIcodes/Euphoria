@@ -1,4 +1,5 @@
 #include "EditorLayer.hpp"
+#include "ImGui/imgui.h"
 
 using namespace EuphoriaEditor;
 using namespace Core;
@@ -20,6 +21,7 @@ void EditorLayer::OnDeattach() {
 
 void EditorLayer::OnEvent(StackEvent eventCode) {
 	if (eventCode == StackEvent::GuiRender) {
-
+		ImGui::Begin("Editor Debug");
+		ImGui::End();
 	}
 }

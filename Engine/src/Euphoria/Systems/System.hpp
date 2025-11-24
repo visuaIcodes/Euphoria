@@ -3,6 +3,7 @@
 #include <memory>
 #include <vector>
 #include <algorithm>
+#include "GlobalStructs.hpp"
 
 namespace Euphoria::Systems {
 
@@ -14,8 +15,9 @@ namespace Euphoria::Systems {
 
         template <typename T, typename... Args>
         static void Add(Args&&... args) {
-            auto system = std::make_shared<T>(std::forward<Args>(args)...);
-            RegisteredSystems.push_back(system);
+            auto _system = std::make_shared<T>(std::forward<Args>(args)...);
+            EUPHORIA_LOG("Registering %s", typeid(_system).name());
+            RegisteredSystems.push_back(_system);
         }
 
         template <typename T>

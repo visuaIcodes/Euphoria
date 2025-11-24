@@ -18,10 +18,6 @@ namespace Euphoria::Core {
 
 		void CreateRenderer(Global::RendererCreationData params);
 
-		Rendering::Renderer* GetRenderer() {
-			return m_Renderer;
-		}
-
 	private:
 		void CreateWindow();
 
@@ -32,6 +28,5 @@ namespace Euphoria::Core {
 		Global::EuphoriaRuntimeInfo m_RuntimeInfo;
 
 		sf::RenderWindow* m_RenderWindow;
-		Rendering::Renderer* m_Renderer;
 	};
 }

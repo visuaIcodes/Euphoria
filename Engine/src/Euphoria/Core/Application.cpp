@@ -7,6 +7,7 @@
 #include "Euphoria/Physics/Physics2D.hpp"
 #include "Euphoria/Layers/Stack.hpp"
 #include "Euphoria/Submodules/Time.hpp"
+#include "Euphoria/Layers/EngineLayer.hpp"
 
 #include <iostream>
 #include <chrono>
@@ -22,7 +23,7 @@ std::unique_ptr<Application> Application::InitializeApplication(Global::Applicat
 
 void Application::Start() {
     while (m_Window->IsRunning() || RuntimeInfo.HeadlessMode) {
-        Rendering::Renderer* Renderer = m_Window->GetRenderer();
+        std::shared_ptr<Renderer> Renderer = Systems::System::Get<Rendering::Renderer>();
         std::shared_ptr<LayerStack::Stack> LayerStack = Systems::System::Get<LayerStack::Stack>();
 
         Submodules::Time::Tick(); // tick time
@@ -33,34 +34,15 @@ void Application::Start() {
             Rendering::Gui::ProcessEvent(*Renderer->GetWindow(), ev);
             if (event->is<sf::Event::Closed>()) {
                 if (Renderer) Renderer->GetWindow()->close();
-                //LayerStack->PollEvent(Global::StackEvent::Quit);
                 break;
             }
         }
 
         LayerStack->PollEvent(Global::StackEvent::Update);
         Physics::Physics2D::Simulate(1.0f / fps);
-
-        if (Renderer != nullptr) {
-            Renderer->BeginFrame();
-            Gui::BeginRender(*Renderer->GetWindow());
-            LayerStack->PollEvent(Global::StackEvent::Render);
-
-            if (Scene::LoadedScene != nullptr) {
-                for (auto sprite : Scene::LoadedScene->GetObjects()) {
-                    Renderer->Draw(sprite->GetSprite()->GetDrawable());
-                }
-            }
-
-            // poll the gui render event and render the gui content
-            LayerStack->PollEvent(Global::StackEvent::GuiRender);
-            Gui::RenderContent();
-
-            Gui::EndRender(*Renderer->GetWindow());
-            Renderer->PresentFrame();
-        }
     }
 
+    Systems::System::Get<LayerStack::Stack>()->Shutdown();
     Rendering::Gui::ShutdownContext();
     Physics::Physics2D::Shutdown();
 }
@@ -88,10 +70,15 @@ Application::Application(Global::ApplicationCreationData& params) : RuntimeInfo(
     Physics::Physics2D::CreateWorld();
 
     EUPHORIA_LOG("Initializing ImGui");
-    if (!Rendering::Gui::InitializeContext(*m_Window->GetRenderer()->GetWindow())) {
+    
+    std::shared_ptr<Renderer> Renderer = Systems::System::Get<Rendering::Renderer>();
+    if (!Rendering::Gui::InitializeContext(*Renderer->GetWindow())) {
         EUPHORIA_LOG("Failed to initialize ImGui context.");
         return;
     }
+
+    EUPHORIA_LOG("Pushing Engine Layer");
+    Systems::System::Get<LayerStack::Stack>()->PushAndCreateLayer<Layers::EngineLayer>();
 
     EUPHORIA_LOG("Started application");
 }

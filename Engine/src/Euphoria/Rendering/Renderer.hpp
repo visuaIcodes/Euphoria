@@ -1,9 +1,10 @@
 #pragma once
 #include "Euphoria/Layers/Layer.hpp"
+#include "Euphoria/Systems/System.hpp"
 #include <SFML/Graphics.hpp>
 
 namespace Euphoria::Rendering {
-	class Renderer {
+	class Renderer : public Systems::System {
 	public:
 		Renderer(sf::RenderWindow* window, Global::RendererCreationData params);
 		~Renderer();

@@ -37,6 +37,8 @@ namespace Euphoria::LayerStack {
 			return nullptr;
 		}
 
+		void Shutdown();
+
 	protected:
 		std::vector<std::shared_ptr<Layer>> m_Layers;
 	};

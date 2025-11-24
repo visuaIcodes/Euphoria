@@ -1,4 +1,5 @@
 #include "Euphoria/Rendering/Renderer.hpp"
+#include "Euphoria/Systems/System.hpp"
 #include "Window.hpp"
 #include <chrono>
 #include <thread>
@@ -40,8 +41,7 @@ void Window::CreateWindow() {
 }
 
 void Window::CreateRenderer(Global::RendererCreationData params) {
-	EUPHORIA_LOG("Creating Renderer");
-	m_Renderer = new Rendering::Renderer(m_RenderWindow, params);
+	Systems::System::Add<Renderer>(m_RenderWindow, params);
 }
 
 void Window::SetVSync(bool vsync) {
