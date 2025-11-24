@@ -8,6 +8,7 @@
 #include "Euphoria/Layers/Stack.hpp"
 #include "Euphoria/Submodules/Time.hpp"
 #include "Euphoria/Layers/EngineLayer.hpp"
+#include "Euphoria/Layers/EngineRenderingLayer.hpp"
 
 #include <iostream>
 #include <chrono>
@@ -26,9 +27,6 @@ void Application::Start() {
         std::shared_ptr<Renderer> Renderer = Systems::System::Get<Rendering::Renderer>();
         std::shared_ptr<LayerStack::Stack> LayerStack = Systems::System::Get<LayerStack::Stack>();
 
-        Submodules::Time::Tick(); // tick time
-        unsigned int fps = Submodules::Time::GetFramesPerSecond();
-
         while (std::optional event = m_Window->PollEvent()) {
             sf::Event& ev = event.value();
             Rendering::Gui::ProcessEvent(*Renderer->GetWindow(), ev);
@@ -39,7 +37,6 @@ void Application::Start() {
         }
 
         LayerStack->PollEvent(Global::StackEvent::Update);
-        Physics::Physics2D::Simulate(1.0f / fps);
     }
 
     Systems::System::Get<LayerStack::Stack>()->Shutdown();
@@ -50,7 +47,6 @@ void Application::Start() {
 Application::Application(Global::ApplicationCreationData& params) : RuntimeInfo(params.RuntimeInfo) {
     EUPHORIA_LOG("Registering Base Systems");
     Systems::System::RegisterBaseSystems();
-    EUPHORIA_LOG("Registered Base Systems");
 
     EUPHORIA_LOG("Starting application");
 
@@ -80,7 +76,9 @@ Application::Application(Global::ApplicationCreationData& params) : RuntimeInfo(
     EUPHORIA_LOG("Pushing Engine Layer");
     Systems::System::Get<LayerStack::Stack>()->PushAndCreateLayer<Layers::EngineLayer>();
 
-    EUPHORIA_LOG("Started application");
+    if (!RuntimeInfo.HeadlessMode) {
+        Systems::System::Get<LayerStack::Stack>()->PushAndCreateLayer<Layers::EngineRenderingLayer>();
+    }
 }
 
 Application::~Application() = default;

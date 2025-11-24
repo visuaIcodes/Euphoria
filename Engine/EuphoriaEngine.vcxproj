@@ -26,6 +26,7 @@
     <ClInclude Include="src\Euphoria\Input\MouseButton.hpp" />
     <ClInclude Include="src\Euphoria\Layers\EngineLayer.hpp" />
     <ClInclude Include="src\Euphoria\Core\Object.hpp" />
+    <ClInclude Include="src\Euphoria\Layers\EngineRenderingLayer.hpp" />
     <ClInclude Include="src\Euphoria\Layers\Layer.hpp" />
     <ClInclude Include="src\Euphoria\Layers\Stack.hpp" />
     <ClInclude Include="src\Euphoria\Physics\Physics2D.hpp" />
@@ -48,6 +49,7 @@
     <ClCompile Include="src\Euphoria\Input\InputSystem.cpp" />
     <ClCompile Include="src\Euphoria\Layers\EngineLayer.cpp" />
     <ClCompile Include="src\Euphoria\Core\Object.cpp" />
+    <ClCompile Include="src\Euphoria\Layers\EngineRenderingLayer.cpp" />
     <ClCompile Include="src\Euphoria\Layers\Stack.cpp" />
     <ClCompile Include="src\Euphoria\Physics\Physics2D.cpp" />
     <ClCompile Include="src\Euphoria\Rendering\Gui.cpp" />

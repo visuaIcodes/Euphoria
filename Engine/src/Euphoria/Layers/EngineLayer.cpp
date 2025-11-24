@@ -3,6 +3,8 @@
 #include "Euphoria/Rendering/Gui.hpp"
 #include "Euphoria/Scene/Scene.hpp"
 #include "Euphoria/Layers/Stack.hpp"
+#include "Euphoria/Submodules/Time.hpp"
+#include "Euphoria/Physics/Physics2D.hpp"
 
 using namespace Euphoria;
 using namespace Core;
@@ -28,25 +30,7 @@ void EngineLayer::OnEvent(StackEvent eventCode) {
 }
 
 void EngineLayer::Update() {
-    std::shared_ptr<Renderer> Renderer = Systems::System::Get<Rendering::Renderer>();
-    std::shared_ptr<LayerStack::Stack> LayerStack = Systems::System::Get<LayerStack::Stack>();
-
-    if (Renderer != nullptr) {
-        Renderer->BeginFrame();
-        Gui::BeginRender(*Renderer->GetWindow());
-        LayerStack->PollEvent(Global::StackEvent::Render);
-
-        if (Scene::LoadedScene != nullptr) {
-            for (auto sprite : Scene::LoadedScene->GetObjects()) {
-                Renderer->Draw(sprite->GetSprite()->GetDrawable());
-            }
-        }
-
-        // poll the gui render event and render the gui content
-        LayerStack->PollEvent(Global::StackEvent::GuiRender);
-        Gui::RenderContent();
-
-        Gui::EndRender(*Renderer->GetWindow());
-        Renderer->PresentFrame();
-    }
+	Submodules::Time::Tick(); // tick time
+	unsigned int fps = Submodules::Time::GetFramesPerSecond();
+	Physics::Physics2D::Simulate(1.0f / fps);
 }
