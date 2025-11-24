@@ -1,5 +1,6 @@
 #include "Euphoria/Systems/System.hpp"
 #include "Euphoria/Layers/Stack.hpp"
+#include "Euphoria/Input/InputSystem.hpp"
 
 using namespace Euphoria;
 using namespace Systems;
@@ -9,4 +10,5 @@ void System::RegisterBaseSystems() {
     RegisteredBaseSystems = true;
 
     Add<LayerStack::Stack>();
+    Add<Input::InputSystem>();
 }
