@@ -31,6 +31,7 @@
     <ClInclude Include="src\Euphoria\Rendering\Sprite.hpp" />
     <ClInclude Include="src\Euphoria\Core\Window.hpp" />
     <ClInclude Include="src\Euphoria\Systems\System.hpp" />
+    <ClInclude Include="src\Euphoria\Submodules\Time.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Global\Include\ImGui\imgui-SFML.cpp" />

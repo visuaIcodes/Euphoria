@@ -1,4 +1,5 @@
 #include "Euphoria/Rendering/Gui.hpp"
+#include "Euphoria/Submodules/Time.hpp"
 #include "ImGui/imgui-SFML.h"
 
 using namespace Euphoria;
@@ -36,6 +37,7 @@ void Gui::BeginRender(sf::RenderWindow& window) {
 
 void Gui::RenderContent() {
 	ImGui::Begin("Hi");
+	ImGui::Text("FPS: %u", Submodules::Time::GetFramesPerSecond());
 	ImGui::End();
 }
 
