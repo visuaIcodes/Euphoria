@@ -21,6 +21,9 @@
   <ItemGroup>
     <ClInclude Include="..\Global\Include\GlobalStructs.hpp" />
     <ClInclude Include="src\Euphoria\Core\Application.hpp" />
+    <ClInclude Include="src\Euphoria\Input\InputSystem.hpp" />
+    <ClInclude Include="src\Euphoria\Input\KeyCode.hpp" />
+    <ClInclude Include="src\Euphoria\Input\MouseButton.hpp" />
     <ClInclude Include="src\Euphoria\Layers\EngineLayer.hpp" />
     <ClInclude Include="src\Euphoria\Core\Object.hpp" />
     <ClInclude Include="src\Euphoria\Layers\Layer.hpp" />
@@ -42,6 +45,7 @@
     <ClCompile Include="..\Global\Include\ImGui\imgui_tables.cpp" />
     <ClCompile Include="..\Global\Include\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="src\Euphoria\Core\Application.cpp" />
+    <ClCompile Include="src\Euphoria\Input\InputSystem.cpp" />
     <ClCompile Include="src\Euphoria\Layers\EngineLayer.cpp" />
     <ClCompile Include="src\Euphoria\Core\Object.cpp" />
     <ClCompile Include="src\Euphoria\Layers\Stack.cpp" />

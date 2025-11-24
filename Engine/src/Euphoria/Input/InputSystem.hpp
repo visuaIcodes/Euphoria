@@ -2,7 +2,6 @@
 #include "Euphoria/Systems/System.hpp"
 #include "Euphoria/Input/KeyCode.hpp"
 #include "Euphoria/Input/MouseButton.hpp"
-#include "Euphoria/Input/MouseWheel.hpp"
 #include "SFML/Graphics.hpp"
 
 namespace Euphoria::Input {
