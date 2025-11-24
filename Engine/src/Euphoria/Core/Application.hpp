@@ -1,7 +1,7 @@
 #pragma once
 #include "GlobalStructs.hpp"
 #include <memory>
-#include "Euphoria.LayerStack/public/Stack.hpp"
+#include "Euphoria/Layers/Stack.hpp"
 
 namespace Euphoria::Core {
 	class Window;
@@ -21,6 +21,5 @@ namespace Euphoria::Core {
 
 	protected:
 		std::unique_ptr<Window> m_Window;
-		std::unique_ptr<LayerStack::Stack> m_LayerStack;
 	};
 }

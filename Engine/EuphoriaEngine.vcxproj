@@ -21,12 +21,16 @@
   <ItemGroup>
     <ClInclude Include="..\Global\Include\GlobalStructs.hpp" />
     <ClInclude Include="src\Euphoria\Core\Application.hpp" />
+    <ClInclude Include="src\Euphoria\Core\Object.hpp" />
+    <ClInclude Include="src\Euphoria\Layers\Layer.hpp" />
+    <ClInclude Include="src\Euphoria\Layers\Stack.hpp" />
     <ClInclude Include="src\Euphoria\Physics\Physics2D.hpp" />
     <ClInclude Include="src\Euphoria\Rendering\Gui.hpp" />
     <ClInclude Include="src\Euphoria\Rendering\Renderer.hpp" />
     <ClInclude Include="src\Euphoria\Scene\Scene.hpp" />
     <ClInclude Include="src\Euphoria\Rendering\Sprite.hpp" />
     <ClInclude Include="src\Euphoria\Core\Window.hpp" />
+    <ClInclude Include="src\Euphoria\Systems\System.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Global\Include\ImGui\imgui-SFML.cpp" />
@@ -36,17 +40,15 @@
     <ClCompile Include="..\Global\Include\ImGui\imgui_tables.cpp" />
     <ClCompile Include="..\Global\Include\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="src\Euphoria\Core\Application.cpp" />
+    <ClCompile Include="src\Euphoria\Core\Object.cpp" />
+    <ClCompile Include="src\Euphoria\Layers\Stack.cpp" />
     <ClCompile Include="src\Euphoria\Physics\Physics2D.cpp" />
     <ClCompile Include="src\Euphoria\Rendering\Gui.cpp" />
     <ClCompile Include="src\Euphoria\Rendering\Renderer.cpp" />
     <ClCompile Include="src\Euphoria\Scene\Scene.cpp" />
     <ClCompile Include="src\Euphoria\Rendering\Sprite.cpp" />
     <ClCompile Include="src\Euphoria\Core\Window.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Modules\Euphoria.LayerStack\Euphoria.LayerStack.vcxproj">
-      <Project>{74ab32e1-6216-4e86-aef5-57428ce3c8f2}</Project>
-    </ProjectReference>
+    <ClCompile Include="src\Euphoria\Systems\System.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>

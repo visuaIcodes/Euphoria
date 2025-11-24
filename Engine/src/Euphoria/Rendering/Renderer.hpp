@@ -1,5 +1,5 @@
 #pragma once
-#include "Euphoria.LayerStack/public/Layer.hpp"
+#include "Euphoria/Layers/Layer.hpp"
 #include <SFML/Graphics.hpp>
 
 namespace Euphoria::Rendering {

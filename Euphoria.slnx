@@ -3,9 +3,6 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Folder Name="/Modules/">
-    <Project Path="Modules/Euphoria.LayerStack/Euphoria.LayerStack.vcxproj" Id="74ab32e1-6216-4e86-aef5-57428ce3c8f2" />
-  </Folder>
   <Project Path="Editor/Editor.vcxproj" Id="62c98f77-48c1-45c2-9796-0e1704a32c1e">
     <BuildDependency Project="Engine\EuphoriaEngine.vcxproj" />
   </Project>

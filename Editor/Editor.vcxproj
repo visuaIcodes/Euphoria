@@ -159,9 +159,6 @@
     <ProjectReference Include="..\Engine\EuphoriaEngine.vcxproj">
       <Project>{9ffb41b2-65c3-4e74-9845-21c248da1d8d}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\Euphoria.LayerStack\Euphoria.LayerStack.vcxproj">
-      <Project>{74ab32e1-6216-4e86-aef5-57428ce3c8f2}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

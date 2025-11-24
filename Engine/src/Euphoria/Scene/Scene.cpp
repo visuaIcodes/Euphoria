@@ -9,11 +9,11 @@ Scene* Scene::LoadedScene = nullptr;
 Scene::Scene() {}
 
 Scene::~Scene() {
-	for (auto sprite : Sprites) {
-		sprite.reset();
+	for (auto object : Objects) {
+		object.reset();
 	}
 
-	Sprites.clear();
+	Objects.clear();
 }
 
 void Scene::Load() {

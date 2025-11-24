@@ -5,6 +5,7 @@
 #include "Euphoria/Rendering/Sprite.hpp"
 #include "Euphoria/Rendering/Gui.hpp"
 #include "Euphoria/Physics/Physics2D.hpp"
+#include "Euphoria/Layers/Stack.hpp"
 
 #include <iostream>
 #include <chrono>
@@ -20,28 +21,30 @@ std::unique_ptr<Application> Application::InitializeApplication(Global::Applicat
 
 void Application::Start() {
     while (m_Window->IsRunning() || RuntimeInfo.HeadlessMode) {
-        Euphoria::Rendering::Renderer* Renderer = m_Window->GetRenderer();
+        Rendering::Renderer* Renderer = m_Window->GetRenderer();
+        std::shared_ptr<LayerStack::Stack> LayerStack = Systems::System::Get<LayerStack::Stack>();
+
         while (std::optional event = m_Window->PollEvent()) {
             sf::Event& ev = event.value();
             Rendering::Gui::ProcessEvent(*Renderer->GetWindow(), ev);
             if (event->is<sf::Event::Closed>()) {
                 if (Renderer) Renderer->GetWindow()->close();
-                m_LayerStack->PollEvent(Global::StackEvent::Quit);
+                LayerStack->PollEvent(Global::StackEvent::Quit);
                 break;
             }
         }
 
-        m_LayerStack->PollEvent(Global::StackEvent::Update);
+        LayerStack->PollEvent(Global::StackEvent::Update);
         Physics::Physics2D::Simulate(1.0f / 90.0f);
 
         if (Renderer != nullptr) {
             Renderer->BeginFrame();
             Gui::BeginRender(*Renderer->GetWindow());
-            m_LayerStack->PollEvent(Global::StackEvent::Render);
+            LayerStack->PollEvent(Global::StackEvent::Render);
 
             if (Scene::LoadedScene != nullptr) {
-                for (auto sprite : Scene::LoadedScene->Sprites) {
-                    Renderer->Draw(sprite->GetDrawable());
+                for (auto sprite : Scene::LoadedScene->GetObjects()) {
+                    Renderer->Draw(sprite->GetSprite()->GetDrawable());
                 }
             }
 
@@ -56,6 +59,10 @@ void Application::Start() {
 }
 
 Application::Application(Global::ApplicationCreationData& params) : RuntimeInfo(params.RuntimeInfo) {
+    EUPHORIA_LOG("Registering Base Systems");
+    Systems::System::RegisterBaseSystems();
+    EUPHORIA_LOG("Registered Base Systems");
+
     EUPHORIA_LOG("Starting application");
 
     m_Window = std::make_unique<Window>(params.WindowCreationData, params.RuntimeInfo);
@@ -63,11 +70,12 @@ Application::Application(Global::ApplicationCreationData& params) : RuntimeInfo(
         EUPHORIA_WARNING("Engine has been started in headless mode, all rendering features WILL be disabled.");
     }
     else m_Window->CreateRenderer(params.RendererCreationData);
-    m_LayerStack = std::make_unique<Euphoria::LayerStack::Stack>();
 
     Scene* scene = new Scene();
-    scene->Sprites.push_back(Euphoria::Rendering::Sprite::CreateSprite("C:\\Personal\\Coding\\Engines\\Euphoria\\Euphoria\\Resources\\Textures\\Image.png", sf::IntRect({0, 0}, {512, 512}), sf::Vector2f(25, 25)));
     scene->Load();
+
+    std::shared_ptr<Object> object = Object::CreateObject("Sprite"); // this function auto registers itself with the active scene
+    object->SetSprite(Euphoria::Rendering::Sprite::CreateSprite("C:\\Personal\\Coding\\Engines\\Euphoria\\Euphoria\\Resources\\Textures\\Image.png", sf::IntRect({ 0, 0 }, { 512, 512 }), sf::Vector2f(25, 25)));
 
     EUPHORIA_LOG("Creating physics world");
     Physics::Physics2D::CreateWorld();

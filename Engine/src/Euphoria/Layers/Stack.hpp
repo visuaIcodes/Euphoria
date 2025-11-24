@@ -2,11 +2,12 @@
 #include <memory>
 #include <vector>
 #include "GlobalStructs.hpp"
+#include "Euphoria/Systems/System.hpp"
 
 namespace Euphoria::LayerStack {
 	class Layer;
 
-	class Stack {
+	class Stack : public Systems::System {
 	public:
 		Stack();
 		~Stack();
