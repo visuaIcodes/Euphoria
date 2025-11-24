@@ -6,6 +6,7 @@ using namespace Euphoria;
 using namespace Rendering;
 
 Renderer::Renderer(sf::RenderWindow* window, Global::RendererCreationData params) : m_RenderWindow(window), m_BackgroundClearColour(params.BackgroundData) {}
+
 Renderer::~Renderer() {}
 
 void Renderer::Clear(sf::Color colour) {
