@@ -19,3 +19,9 @@ std::shared_ptr<Sprite> Sprite::CreateSprite(
 
     return std::make_shared<Sprite>(sprite, texture);
 }
+
+void Sprite::ApplyTransformations(sf::Vector2f position, sf::Vector2f size, sf::Angle rotationAngle) {
+    m_Sprite->setPosition(position);
+    m_Sprite->setRotation(rotationAngle);
+    m_Sprite->setScale(size);
+}

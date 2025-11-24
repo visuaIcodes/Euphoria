@@ -10,7 +10,7 @@ namespace Euphoria::Core {
 		std::string Name;
 		sf::Vector2f Position;
 		sf::Vector2f Size;
-		float Rotation;
+		sf::Angle Rotation;
 		std::shared_ptr<Rendering::Sprite> Sprite;
 
 	public:
@@ -34,7 +34,7 @@ namespace Euphoria::Core {
 			Size = size;
 		}
 
-		void SetRotation(float angle) noexcept {
+		void SetRotation(sf::Angle angle) noexcept {
 			Rotation = angle;
 		}
 
@@ -50,7 +50,7 @@ namespace Euphoria::Core {
 			return Position;
 		}
 
-		float GetRotation() noexcept {
+		sf::Angle GetRotation() noexcept {
 			return Rotation;
 		}
 
