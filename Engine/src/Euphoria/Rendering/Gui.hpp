@@ -14,6 +14,8 @@ namespace Euphoria::Rendering {
 		static void RenderContent();
 		static void EndRender(sf::RenderWindow& window);
 
+		static void InitializeStyles();
+
 	private:
 		static ImGuiContext* m_ImGuiContext;
 	};

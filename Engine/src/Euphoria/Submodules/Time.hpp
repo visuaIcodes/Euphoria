@@ -21,7 +21,7 @@ namespace Euphoria::Submodules {
 				s_Frame = 0;
 				s_Clock.restart();
 
-				EUPHORIA_LOG("Ticked time, frames per second: %u", s_FPS);
+				//EUPHORIA_LOG("Ticked time, frames per second: %u", s_FPS);
 			}
 
 			s_Frame++;
