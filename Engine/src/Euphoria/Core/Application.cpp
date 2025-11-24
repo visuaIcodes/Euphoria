@@ -6,6 +6,7 @@
 #include "Euphoria/Rendering/Gui.hpp"
 #include "Euphoria/Physics/Physics2D.hpp"
 #include "Euphoria/Layers/Stack.hpp"
+#include "Euphoria/Submodules/Time.hpp"
 
 #include <iostream>
 #include <chrono>
@@ -24,6 +25,9 @@ void Application::Start() {
         Rendering::Renderer* Renderer = m_Window->GetRenderer();
         std::shared_ptr<LayerStack::Stack> LayerStack = Systems::System::Get<LayerStack::Stack>();
 
+        Submodules::Time::Tick(); // tick time
+        unsigned int fps = Submodules::Time::GetFramesPerSecond();
+
         while (std::optional event = m_Window->PollEvent()) {
             sf::Event& ev = event.value();
             Rendering::Gui::ProcessEvent(*Renderer->GetWindow(), ev);
@@ -35,7 +39,7 @@ void Application::Start() {
         }
 
         LayerStack->PollEvent(Global::StackEvent::Update);
-        Physics::Physics2D::Simulate(1.0f / 90.0f);
+        Physics::Physics2D::Simulate(1.0f / fps);
 
         if (Renderer != nullptr) {
             Renderer->BeginFrame();
