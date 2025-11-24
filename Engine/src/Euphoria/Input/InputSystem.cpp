@@ -17,3 +17,7 @@ bool InputSystem::IsMouseButtonPressed(MouseButton button) {
 sf::Vector2i InputSystem::GetMousePosition() {
 	return sf::Mouse::getPosition();
 }
+
+sf::Vector2i InputSystem::GetMousePositionRelativeToWindow(sf::RenderWindow& window) {
+	return sf::Mouse::getPosition(window);
+}

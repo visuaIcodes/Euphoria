@@ -14,5 +14,6 @@ namespace Euphoria::Input {
 		bool IsKeyPressed(KeyCode key);
 		bool IsMouseButtonPressed(MouseButton button);
 		sf::Vector2i GetMousePosition();
+		sf::Vector2i GetMousePositionRelativeToWindow(sf::RenderWindow& window);
 	};
 }
