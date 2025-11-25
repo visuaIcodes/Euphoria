@@ -1,6 +1,6 @@
 #include "Euphoria/Layers/EngineLayer.hpp"
 #include "Euphoria/Rendering/Renderer.hpp"
-#include "Euphoria/Rendering/Gui.hpp"
+#include "Euphoria/UI/Gui.hpp"
 #include "Euphoria/Scene/Scene.hpp"
 #include "Euphoria/Layers/Stack.hpp"
 #include "Euphoria/Submodules/Time.hpp"
@@ -10,6 +10,7 @@ using namespace Euphoria;
 using namespace Core;
 using namespace Global;
 using namespace Rendering;
+using namespace UI;
 using namespace Layers;
 
 EngineLayer::EngineLayer() {}

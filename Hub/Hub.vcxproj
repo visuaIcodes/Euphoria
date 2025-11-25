@@ -18,53 +18,13 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\Global\Include\GlobalStructs.hpp" />
-    <ClInclude Include="src\Euphoria\Core\Application.hpp" />
-    <ClInclude Include="src\Euphoria\Input\InputSystem.hpp" />
-    <ClInclude Include="src\Euphoria\Input\KeyCode.hpp" />
-    <ClInclude Include="src\Euphoria\Input\MouseButton.hpp" />
-    <ClInclude Include="src\Euphoria\Layers\EngineLayer.hpp" />
-    <ClInclude Include="src\Euphoria\Core\Object.hpp" />
-    <ClInclude Include="src\Euphoria\Layers\EngineRenderingLayer.hpp" />
-    <ClInclude Include="src\Euphoria\Layers\Layer.hpp" />
-    <ClInclude Include="src\Euphoria\Layers\Stack.hpp" />
-    <ClInclude Include="src\Euphoria\Physics\Physics2D.hpp" />
-    <ClInclude Include="src\Euphoria\UI\Gui.hpp" />
-    <ClInclude Include="src\Euphoria\Rendering\Renderer.hpp" />
-    <ClInclude Include="src\Euphoria\Scene\Scene.hpp" />
-    <ClInclude Include="src\Euphoria\Rendering\Sprite.hpp" />
-    <ClInclude Include="src\Euphoria\Core\Window.hpp" />
-    <ClInclude Include="src\Euphoria\Systems\System.hpp" />
-    <ClInclude Include="src\Euphoria\Submodules\Time.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\Global\Include\ImGui\imgui-SFML.cpp" />
-    <ClCompile Include="..\Global\Include\ImGui\imgui.cpp" />
-    <ClCompile Include="..\Global\Include\ImGui\imgui_demo.cpp" />
-    <ClCompile Include="..\Global\Include\ImGui\imgui_draw.cpp" />
-    <ClCompile Include="..\Global\Include\ImGui\imgui_tables.cpp" />
-    <ClCompile Include="..\Global\Include\ImGui\imgui_widgets.cpp" />
-    <ClCompile Include="src\Euphoria\Core\Application.cpp" />
-    <ClCompile Include="src\Euphoria\Input\InputSystem.cpp" />
-    <ClCompile Include="src\Euphoria\Layers\EngineLayer.cpp" />
-    <ClCompile Include="src\Euphoria\Core\Object.cpp" />
-    <ClCompile Include="src\Euphoria\Layers\EngineRenderingLayer.cpp" />
-    <ClCompile Include="src\Euphoria\Layers\Stack.cpp" />
-    <ClCompile Include="src\Euphoria\Physics\Physics2D.cpp" />
-    <ClCompile Include="src\Euphoria\UI\Gui.cpp" />
-    <ClCompile Include="src\Euphoria\Rendering\Renderer.cpp" />
-    <ClCompile Include="src\Euphoria\Scene\Scene.cpp" />
-    <ClCompile Include="src\Euphoria\Rendering\Sprite.cpp" />
-    <ClCompile Include="src\Euphoria\Core\Window.cpp" />
-    <ClCompile Include="src\Euphoria\Systems\System.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{9ffb41b2-65c3-4e74-9845-21c248da1d8d}</ProjectGuid>
-    <RootNamespace>Euphoria</RootNamespace>
+    <ProjectGuid>{27587306-54ea-4f5f-88df-c517bb31bc1b}</ProjectGuid>
+    <RootNamespace>Hub</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>EuphoriaHub</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -81,17 +41,17 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -111,15 +71,13 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)Global\Build\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)Global\Build\$(ProjectName)\$(Platform)\$(Configuration)\intermediate\</IntDir>
-    <TargetName>EuphoriaEngine</TargetName>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)Global\Build\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Global\Build\$(ProjectName)\$(Platform)\$(Configuration)\intermediate\</IntDir>
-    <TargetName>EuphoriaEngine</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)Global\Build\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Global\Build\$(ProjectName)\$(Platform)\$(Configuration)\intermediate\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -143,7 +101,6 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>src;Global\Include;..\Modules</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -157,21 +114,11 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>..\Global\Include\ImGui;src;..\Global\Include;..\Modules</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <ProjectReference>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-    </ProjectReference>
-    <Lib>
-      <AdditionalLibraryDirectories>..\Global\Libraries</AdditionalLibraryDirectories>
-      <AdditionalDependencies>box2d.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;opengl32.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -182,22 +129,15 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>..\Global\Include\ImGui;src;..\Global\Include;..\Modules</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <ProjectReference>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-    </ProjectReference>
-    <Lib>
-      <AdditionalLibraryDirectories>..\Global\Libraries</AdditionalLibraryDirectories>
-      <AdditionalDependencies>box2d.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;opengl32.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
-    </Lib>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="source\main.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

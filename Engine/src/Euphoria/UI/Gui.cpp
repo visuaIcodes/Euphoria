@@ -1,9 +1,10 @@
-#include "Euphoria/Rendering/Gui.hpp"
+#include "Euphoria/UI/Gui.hpp"
 #include "Euphoria/Submodules/Time.hpp"
 #include "ImGui/imgui-SFML.h"
+#include "ImGui/imgui_internal.h"
 
 using namespace Euphoria;
-using namespace Rendering;
+using namespace UI;
 
 ImGuiContext* Gui::m_ImGuiContext = nullptr;
 
@@ -129,9 +130,6 @@ void Gui::BeginRender(sf::RenderWindow& window) {
 }
 
 void Gui::RenderContent() {
-	ImGui::Begin("Hi");
-	ImGui::Text("FPS: %u", Submodules::Time::GetFramesPerSecond());
-	ImGui::End();
 }
 
 void Gui::EndRender(sf::RenderWindow& window) {

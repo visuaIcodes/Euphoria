@@ -3,6 +3,9 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Folder Name="/Launchers/">
+    <Project Path="Hub/Hub.vcxproj" Id="27587306-54ea-4f5f-88df-c517bb31bc1b" />
+  </Folder>
   <Project Path="Editor/Editor.vcxproj" Id="62c98f77-48c1-45c2-9796-0e1704a32c1e">
     <BuildDependency Project="Engine\EuphoriaEngine.vcxproj" />
   </Project>

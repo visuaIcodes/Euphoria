@@ -3,7 +3,7 @@
 #include "Euphoria/Scene/Scene.hpp"
 #include "Euphoria/Rendering/Renderer.hpp"
 #include "Euphoria/Rendering/Sprite.hpp"
-#include "Euphoria/Rendering/Gui.hpp"
+#include "Euphoria/UI/Gui.hpp"
 #include "Euphoria/Physics/Physics2D.hpp"
 #include "Euphoria/Layers/Stack.hpp"
 #include "Euphoria/Submodules/Time.hpp"
@@ -17,6 +17,7 @@
 using namespace Euphoria;
 using namespace Core;
 using namespace Rendering;
+using namespace UI;
 
 std::unique_ptr<Application> Application::InitializeApplication(Global::ApplicationCreationData& params) {
     return std::make_unique<Application>(params);
@@ -29,7 +30,7 @@ void Application::Start() {
 
         while (std::optional event = m_Window->PollEvent()) {
             sf::Event& ev = event.value();
-            Rendering::Gui::ProcessEvent(*Renderer->GetWindow(), ev);
+            UI::Gui::ProcessEvent(*Renderer->GetWindow(), ev);
             if (event->is<sf::Event::Closed>()) {
                 if (Renderer) Renderer->GetWindow()->close();
                 break;
@@ -40,7 +41,7 @@ void Application::Start() {
     }
 
     Systems::System::Get<LayerStack::Stack>()->Shutdown();
-    Rendering::Gui::ShutdownContext();
+    UI::Gui::ShutdownContext();
     Physics::Physics2D::Shutdown();
 }
 
@@ -68,7 +69,7 @@ Application::Application(Global::ApplicationCreationData& params) : RuntimeInfo(
     EUPHORIA_LOG("Initializing ImGui");
     
     std::shared_ptr<Renderer> Renderer = Systems::System::Get<Rendering::Renderer>();
-    if (!Rendering::Gui::InitializeContext(*Renderer->GetWindow())) {
+    if (!UI::Gui::InitializeContext(*Renderer->GetWindow())) {
         EUPHORIA_LOG("Failed to initialize ImGui context.");
         return;
     }

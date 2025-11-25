@@ -2,7 +2,7 @@
 #include "ImGui/imgui.h"
 #include "SFML/Graphics.hpp"
 
-namespace Euphoria::Rendering {
+namespace Euphoria::UI {
 	class Gui {
 	public:
 		static bool InitializeContext(sf::RenderWindow& window);
